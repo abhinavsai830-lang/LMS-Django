@@ -1,25 +1,65 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<div class="container mt-5" style="max-width:500px">
+<div class="container mt-5">
 
-<h2 class="text-center">Student Register</h2>
+<div class="row justify-content-center">
+
+<div class="col-md-6">
+
+<div class="card shadow-lg p-4">
+
+<h3 class="text-center mb-4">Create Your Account</h3>
 
 <form method="POST">
 {% csrf_token %}
 
-<input type="text" name="name" placeholder="Name" class="form-control mb-3">
+<div class="mb-3">
+<label class="form-label">Username</label>
+<input type="text" name="username" class="form-control" placeholder="Enter username" required>
+</div>
 
-<input type="email" name="email" placeholder="Email" class="form-control mb-3">
+<div class="mb-3">
+<label class="form-label">Email</label>
+<input type="email" name="email" class="form-control" placeholder="Enter email" required>
+</div>
 
-<input type="password" name="password" placeholder="Password" class="form-control mb-3">
+<div class="mb-3">
+<label class="form-label">Password</label>
+<input type="password" name="password" class="form-control" placeholder="Enter password" required>
+</div>
 
-<input type="text" name="phone" placeholder="Phone" class="form-control mb-3">
+<div class="mb-3">
+<label class="form-label">Phone</label>
+<input type="text" name="phone" class="form-control" placeholder="Enter phone number" required>
+</div>
 
-<button class="btn btn-success w-100">Register</button>
+<div class="mb-3">
+<label class="form-label">Role</label>
+<select name="role" class="form-select">
+<option value="student">Student</option>
+<option value="faculty">Faculty</option>
+<option value="admin">Admin</option>
+</select>
+</div>
+
+<button type="submit" class="btn btn-success w-100">
+Register
+</button>
 
 </form>
+
+<div class="text-center mt-3">
+Already have an account?
+<a href="/login">Login</a>
+</div>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 

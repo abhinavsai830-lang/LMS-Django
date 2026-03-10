@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import AdminUser
-
+from courses.models import Course
 
 def home(request):
     return render(request, "home.html")
@@ -9,11 +9,17 @@ def home(request):
 def register_view(request):
 
     if request.method == "POST":
-        username = request.POST["username"]
-        email = request.POST["email"]
-        password = request.POST["password"]
-        phone = request.POST["phone"]
-        role = request.POST["role"]
+
+        username = request.POST['username']
+        email = request.POST['email']
+        password = request.POST['password']
+        phone = request.POST['phone']
+        role = request.POST['role']
+
+        if AdminUser.objects.filter(username=username).exists():
+            return render(request, "register.html", {
+                "error": "Username already exists"
+            })
 
         AdminUser.objects.create(
             username=username,
@@ -26,15 +32,13 @@ def register_view(request):
         return redirect("login")
 
     return render(request, "register.html")
-
-
 def login_view(request):
 
     if request.method == "POST":
 
-        username = request.POST["username"]
-        password = request.POST["password"]
-        role = request.POST["role"]
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        role = request.POST.get("role")
 
         try:
             user = AdminUser.objects.get(
@@ -46,20 +50,35 @@ def login_view(request):
             request.session["username"] = user.username
             request.session["role"] = user.role
 
-            if user.role == "admin":
+            if role == "admin":
                 return redirect("admin_dashboard")
 
-            elif user.role == "student":
+            elif role == "student":
                 return redirect("student_dashboard")
 
-            elif user.role == "faculty":
+            elif role == "faculty":
                 return redirect("faculty_dashboard")
 
         except AdminUser.DoesNotExist:
-            return render(request, "login.html", {"error": "Invalid credentials"})
+
+            return render(request, "login.html", {
+                "error": "Invalid username or password"
+            })
 
     return render(request, "login.html")
 
 
 def admin_dashboard(request):
-    return render(request, "admin_dashboard.html")
+
+    if request.session.get("role") != "admin":
+        return redirect("login")
+
+    users = AdminUser.objects.all()
+    courses = Course.objects.all()
+
+    context = {
+        "users": users,
+        "courses": courses
+    }
+
+    return render(request, "admin_dashboard.html", context)
