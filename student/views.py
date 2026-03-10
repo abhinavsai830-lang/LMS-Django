@@ -1,21 +1,6 @@
-from django.shortcuts import render, redirect
-
-def home(request):
-    return render(request, 'home.html')
-
-def about(request):
-    return render(request, 'about.html')
-
-
-
-
-
-
-
-
+from django.shortcuts import render
 
 
 def student_dashboard(request):
-    return render(request, 'student_dashboard.html')
 
-
+    return render(request, "student_dashboard.html")

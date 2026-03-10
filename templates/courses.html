@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2 class="text-center">Available Courses</h2>
+
+<div class="row">
+
+{% for course in courses %}
+
+<div class="col-md-4">
+
+<div class="card m-3 shadow">
+
+<div class="card-body">
+
+<h5>{{ course.title }}</h5>
+
+<p>{{ course.description }}</p>
+
+<p>Duration: {{ course.duration }} hours</p>
+
+<p>Price: ₹{{ course.price }}</p>
+
+<a href="#" class="btn btn-success">Enroll</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

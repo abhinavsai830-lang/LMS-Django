@@ -75,17 +75,17 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
 DATABASES = {
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'fdp_db',
+        'NAME': 'DEM0_PFSD_LMS_db',
         'USER': 'postgres',
         'PASSWORD': '1379',
         'HOST': 'localhost',
         'PORT': '5432',
-
     }
+
 }
 
 
