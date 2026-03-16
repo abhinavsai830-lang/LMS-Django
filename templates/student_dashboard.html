@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2 class="mb-4">Student Dashboard</h2>
+
+<div class="row mb-4">
+
+<div class="col-md-4">
+<div class="card text-white bg-primary shadow">
+<div class="card-body text-center">
+<h5>Enrolled Courses</h5>
+<h3>{{ enrollments|length }}</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-white bg-success shadow">
+<div class="card-body text-center">
+<h5>Learning Status</h5>
+<h3>Active</h3>
+</div>
+</div>
+</div>
+
+<div class="col-md-4">
+<div class="card text-white bg-warning shadow">
+<div class="card-body text-center">
+<h5>Certificates</h5>
+<h3>0</h3>
+</div>
+</div>
+</div>
+
+</div>
+
+
+<h3 class="mb-3">My Courses</h3>
+
+<div class="row">
+
+{% for enroll in enrollments %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<h4 class="card-title">
+{{ enroll.course.title }}
+</h4>
+
+<p class="card-text">
+{{ enroll.course.description }}
+</p>
+
+<p>
+Duration: {{ enroll.course.duration }} hrs
+</p>
+
+<a href="#" class="btn btn-primary">
+Start Learning
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

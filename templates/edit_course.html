@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2>Edit Course</h2>
+
+<form method="POST">
+{% csrf_token %}
+
+<div class="mb-3">
+<label>Course Title</label>
+<input type="text" name="title" value="{{course.title}}" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Description</label>
+<textarea name="description" class="form-control">{{course.description}}</textarea>
+</div>
+
+<div class="mb-3">
+<label>Duration</label>
+<input type="number" name="duration" value="{{course.duration}}" class="form-control">
+</div>
+
+<div class="mb-3">
+<label>Price</label>
+<input type="number" name="price" value="{{course.price}}" class="form-control">
+</div>
+
+<button class="btn btn-success">
+Update Course
+</button>
+
+</form>
+
+</div>
+
+{% endblock %}

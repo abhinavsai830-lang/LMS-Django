@@ -4,7 +4,7 @@
 
 <div class="container mt-5">
 
-<h2 class="text-center">Available Courses</h2>
+<h2>Available Courses</h2>
 
 <div class="row">
 
@@ -12,21 +12,19 @@
 
 <div class="col-md-4">
 
-<div class="card m-3 shadow">
+<div class="card p-3 shadow">
 
-<div class="card-body">
+<h4>{{course.title}}</h4>
 
-<h5>{{ course.title }}</h5>
+<p>{{course.description}}</p>
 
-<p>{{ course.description }}</p>
+<p>Duration: {{course.duration}} hrs</p>
 
-<p>Duration: {{ course.duration }} hours</p>
+<p>Price: ₹{{course.price}}</p>
 
-<p>Price: ₹{{ course.price }}</p>
-
-<a href="#" class="btn btn-success">Enroll</a>
-
-</div>
+<a href="/enroll/{{course.id}}" class="btn btn-success">
+Enroll
+</a>
 
 </div>
 
