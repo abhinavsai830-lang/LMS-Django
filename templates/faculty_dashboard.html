@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h2>Faculty Dashboard</h2>
+
+<h4 class="mt-4">Courses</h4>
+
+<div class="row">
+
+{% for course in courses %}
+
+<div class="col-md-4 mb-4">
+
+<div class="card p-3 shadow">
+
+<h4>{{course.title}}</h4>
+
+<p>{{course.description}}</p>
+
+<a href="/add-lecture/{{course.id}}" class="btn btn-primary">
+Add Lecture
+</a>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+</div>
+
+{% endblock %}

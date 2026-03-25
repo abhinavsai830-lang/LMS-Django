@@ -26,3 +26,20 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.student.username} - {self.course.title}"
+
+class Lecture(models.Model):
+
+    course = models.ForeignKey(
+        Course,
+        on_delete=models.CASCADE
+    )
+
+    title = models.CharField(max_length=200)
+
+    video_url = models.URLField(blank=True, null=True)
+    material = models.FileField(upload_to="materials/", blank=True, null=True)
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
